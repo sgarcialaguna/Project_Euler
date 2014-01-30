@@ -1,21 +1,14 @@
+import math
+
 n = 600851475143
 
 def prime_sieve(n):
-   possible_primes = range(2,n)
-   is_prime = [True] * (n + 1)
-
-   for i in possible_primes:
+    is_prime = [False, False] + [True] * (n-1)
+    for i in range(2, int(math.sqrt(n) + 1)):
         if is_prime[i]:
-            j = 2
-            while i * j < n:
-                is_prime[i * j - 2] = False
-                j += 1
-
-   primes = []
-   for i in possible_primes:
-       if is_prime[i - 2]:
-           primes.append(i)
-   return primes
+            for j in range(i*i, n+1, i):
+                is_prime[j] = False
+    return [idx for idx, i in enumerate(is_prime) if i]
 
 def trial_division(n):
     primes = prime_sieve(int(n**0.5)+ 1)
