@@ -7,4 +7,5 @@ for i in range(1,101):
 
 squaredSums **= 2
 
+
 print sumOfSquares, squaredSums, sumOfSquares - squaredSums
