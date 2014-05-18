@@ -1,21 +1,23 @@
 def collatz_sequence(n):
-    result = [n]
-    while result[-1] != 1:
-        if result[-1] in collatz_sequence.known_sequences:
-            result.extend(collatz_sequence.known_sequences[result[-1]][1:])
-            break
-        if result[-1] % 2 == 0:
-            result.append(result[-1] / 2)
+    sequence = [n]
+    while sequence[-1] != 1:
+        if sequence[-1] in collatz_sequence.known_sequences:
+            result = len(sequence) + collatz_sequence.known_sequences[sequence[-1]] - 1
+            collatz_sequence.known_sequences[n] = result
+            return result
+        if sequence[-1] % 2 == 0:
+            sequence.append(sequence[-1] / 2)
         else:
-            result.append(3 * result[-1] + 1)
+            sequence.append(3 * sequence[-1] + 1)
+    result = len(sequence)
     collatz_sequence.known_sequences[n] = result
     return result
 
 
 collatz_sequence.known_sequences = {}
 
-assert (collatz_sequence(1) == [1])
-assert (collatz_sequence(13) == [13, 40, 20, 10, 5, 16, 8, 4, 2, 1])
+assert (collatz_sequence(1) == 1)
+assert (collatz_sequence(13) == len([13, 40, 20, 10, 5, 16, 8, 4, 2, 1]))
 
 
 def find_longest_collatz_sequence():
@@ -23,11 +25,11 @@ def find_longest_collatz_sequence():
     longest_collatz_sequence = (1, 1)
     for i in range(2, 1000000):
         c = collatz_sequence(i)
-        if len(c) > longest_collatz_sequence[1]:
-            longest_collatz_sequence = (i, len(c))
+        if c > longest_collatz_sequence[1]:
+            longest_collatz_sequence = (i, c)
+    assert(longest_collatz_sequence == (837799, 525))
     print longest_collatz_sequence
 
 
 import timeit
-
 print timeit.timeit(find_longest_collatz_sequence, number=1)
