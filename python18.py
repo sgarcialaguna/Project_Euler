@@ -18,7 +18,6 @@ numbers = [[75],
 
 max_sum = 0
 for path in itertools.product([0, 1], repeat=14):
-    print path
     sum = 75
     row = 0
     column = 0
