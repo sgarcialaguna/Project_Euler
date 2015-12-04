@@ -1,3 +1,11 @@
+"""The four adjacent digits in the 1000-digit number that have the greatest product
+ are 9 × 9 × 8 × 9 = 5832.
+
+[large number ]
+Find the thirteen adjacent digits in the 1000-digit number that have the greatest product.
+What is the value of this product?"""
+import functools
+
 number = '7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615' \
          '6078911294949545950173795833195285320880551112540698747158523863050715693290963295227443043557668966489504' \
          '4524452316173185640309871112172238311362229893423380308135336276614282806444486645238749303589072962904915' \
@@ -10,9 +18,9 @@ number = '7316717653133062491922511967442657474235534919493496983520312774506326
          '6269561882670428252483600823257530420752963450'
 
 largestProduct = 0
-for i in range(0, len(number)-4):
-    substring = number[i:i+5]
-    product = int(substring[0]) * int(substring[1]) * int(substring[2]) * int(substring[3]) * int(substring[4])
-    largestProduct = product if product > largestProduct else largestProduct
+for i in range(0, len(number) - 13):
+    substring = number[i:i + 13]
+    product = functools.reduce(lambda x, y: int(x) * int(y), substring)
+    largestProduct = max(product, largestProduct)
 
-print largestProduct
+print(largestProduct)
