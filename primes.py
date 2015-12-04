@@ -16,6 +16,10 @@ def prime_factorization(n):
     return primeFactors
 
 
+def is_prime(n):
+    return len(prime_factorization(n)) == 1
+
+
 assert (prime_factorization(1) == [1])
 assert (prime_factorization(2) == [2])
 assert (prime_factorization(3) == [3])
