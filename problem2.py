@@ -27,7 +27,7 @@ if __name__ == '__main__':
         if f > 4000000:
             break
 
-        if f %2 == 0:
+        if f % 2 == 0:
             sum_ += f
 
     print(sum_)
