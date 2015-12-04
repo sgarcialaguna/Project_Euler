@@ -1,6 +1,11 @@
+"""The prime factors of 13195 are 5, 7, 13 and 29.
+
+What is the largest prime factor of the number 600851475143 ?"""
+
 import math
 
 n = 600851475143
+
 
 def prime_sieve(n):
     is_prime = [False, False] + [True] * (n-1)
@@ -21,4 +26,4 @@ def trial_division(n):
     return prime_factors
 
 if __name__ == '__main__':
-    print trial_division(n)
+    print(trial_division(n)[-1])
