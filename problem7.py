@@ -5,17 +5,10 @@ What is the 10 001st prime number?"""
 
 import primes
 
-
-def main():
-    i = 2
-    known_primes = []
-    while len(known_primes) <= 10000:
-        if primes.is_prime(i):
-            known_primes.append(i)
-        i += 1
-    print(known_primes[-1])
-
-
-import timeit
-
-print(timeit.timeit(main, number=3))
+i = 2
+known_primes = []
+while len(known_primes) <= 10000:
+    if primes.is_prime(i):
+        known_primes.append(i)
+    i += 1
+print(known_primes[-1])
